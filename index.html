@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How to Remove Password Protection from an Excel File or Sheet</title>
+<meta content="A complete owner's guide on how to remove password protection from an Excel file, sheet, or workbook. Step-by-step methods and recovery tips." name="description"/>
+<!-- Replace YOUR-DOMAIN.com before launch -->
+<link href="https://YOUR-DOMAIN.com/how-to-remove-password-protection-from-excel/" rel="canonical"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+:root {
+    --color-bg: #050A1A;
+    --color-surface: #0D1628;
+    --color-surface-2: #111D34;
+    --color-primary-accent: #00D4FF;
+    --color-secondary-accent: #7C3AED;
+    --blob-a: #0EA5E9;
+    --blob-b: #8B5CF6;
+    --blob-c: #06B6D4;
+    --color-light-section: #EFF6FF;
+    --color-body-text: #E0F2FE;
+    --color-body-text-light: #0C1A2E;
+    --color-muted-dark: #9DB8D9;
+    --color-muted-light: #456078;
+    --color-border-dark: rgba(224,242,254,0.16);
+    --color-border-light: rgba(12,26,46,0.12);
+    --font-heading: 'Sora', sans-serif;
+    --font-body: 'Sora', sans-serif;
+    --max-reading-width: 780px;
+    --max-wide-width: 1180px;
+    --section-padding-v: 92px;
+    --radius-card: 28px;
+    --shadow-card: 0 30px 70px rgba(0, 12, 36, 0.32);
+    --glow-a: 0 0 36px rgba(0, 212, 255, 0.36);
+    --glow-b: 0 0 42px rgba(124, 58, 237, 0.34);
+    --scroll-violet: 0;
+    --transition-speed: 0.25s;
+}
+
+/* Reset & Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--color-bg); }
+body {
+    font-family: var(--font-body);
+    color: var(--color-body-text);
+    background:
+        radial-gradient(circle at 12% 8%, rgba(14,165,233,0.20), transparent 30rem),
+        radial-gradient(circle at 88% 3%, rgba(124,58,237,0.18), transparent 32rem),
+        linear-gradient(180deg, #050A1A 0%, #081126 48%, #050A1A 100%);
+    line-height: 1.75;
+    font-size: 17px;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .site-name {
+    font-family: var(--font-heading);
+    color: #FFFFFF;
+    line-height: 1.08;
+    margin-bottom: 1rem;
+    letter-spacing: -0.04em;
+}
+h1 {
+    font-size: clamp(40px, 7vw, 64px);
+    font-weight: 700;
+    max-width: 980px;
+    margin-inline: auto;
+    text-wrap: balance;
+}
+h2 {
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 700;
+    margin-top: 2rem;
+    text-wrap: balance;
+}
+h3 {
+    font-size: clamp(21px, 2.6vw, 28px);
+    font-weight: 700;
+    margin-top: 1.5rem;
+}
+p, ul, ol { margin-bottom: 1.5rem; }
+ul, ol { padding-left: 1.25rem; }
+li { margin-bottom: .7rem; }
+a {
+    color: var(--color-primary-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-speed), text-shadow var(--transition-speed);
+}
+a:hover {
+    color: #82ECFF;
+    text-decoration: none;
+    text-shadow: var(--glow-a);
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 24px;
+}
+
+.container { max-width: var(--max-reading-width); margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+.container-wide { max-width: var(--max-wide-width); margin: 0 auto; padding: 0 24px; position: relative; z-index: 2; }
+
+section {
+    position: relative;
+    padding: var(--section-padding-v) 0;
+    overflow: hidden;
+    isolation: isolate;
+}
+section::before {
+    content: "";
+    position: absolute;
+    width: min(42vw, 520px);
+    aspect-ratio: 1;
+    border-radius: 42% 58% 60% 40% / 42% 45% 55% 58%;
+    background: radial-gradient(circle at 28% 28%, rgba(0,212,255,0.18), rgba(124,58,237,0.09) 58%, transparent 70%);
+    filter: blur(2px);
+    opacity: 0;
+    transform: scale(.12);
+    transform-origin: center;
+    transition: transform 1s cubic-bezier(.19,1,.22,1), opacity 1s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+section.visible::before {
+    transform: scale(1);
+    opacity: 1;
+}
+section:nth-of-type(odd)::before { right: -12vw; top: 10%; }
+section:nth-of-type(even)::before { left: -14vw; top: 8%; }
+
+.bg-alt {
+    background:
+        radial-gradient(circle at 15% 0%, rgba(14,165,233,0.10), transparent 30rem),
+        radial-gradient(circle at 90% 15%, rgba(139,92,246,0.10), transparent 30rem),
+        var(--color-light-section);
+    color: var(--color-body-text-light);
+    border-top: 0;
+    border-bottom: 0;
+}
+.bg-alt h1, .bg-alt h2, .bg-alt h3, .bg-alt h4 { color: var(--color-body-text-light); }
+.bg-alt a { color: #2563EB; }
+.bg-alt a:hover { color: #7C3AED; text-shadow: none; }
+
+.liquid-divider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 70px;
+    z-index: 1;
+    pointer-events: none;
+}
+.liquid-divider path {
+    fill: currentColor;
+}
+
+/* Header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 14px 0;
+    background: rgba(5, 10, 26, 0.76);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--color-border-dark);
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+    gap: 24px;
+}
+.brand-lockup, .site-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff !important;
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.03em;
+}
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    filter: drop-shadow(0 0 14px rgba(0,212,255,0.35));
+}
+.brand-icon .shield-fill { animation: shieldPulse 3s ease-in-out infinite; transform-origin: center; }
+@keyframes shieldPulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.035);} }
+.nav-links { display: flex; gap: 30px; align-items: center; }
+.nav-links a {
+    font-size: 13px;
+    color: var(--color-muted-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.nav-links a:hover { color: #fff; }
+.menu-toggle { display: none; font-size: 28px; cursor: pointer; color: #fff; }
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 15px;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+    cursor: pointer;
+    text-decoration: none !important;
+    border: 1.5px solid rgba(0,212,255,0.60);
+    position: relative;
+    overflow: hidden;
+}
+.btn::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle, rgba(255,255,255,.28), transparent 42%);
+    transform: translateX(-80%);
+    transition: transform .55s ease;
+}
+.btn:hover::before { transform: translateX(80%); }
+.btn:hover { transform: translateY(-2px); }
+.btn-outline {
+    background: rgba(255,255,255,0.03) !important;
+    color: #E0F2FE !important;
+    border-color: rgba(124,58,237,0.80) !important;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), var(--glow-b);
+}
+.btn-outline:hover {
+    background: rgba(124,58,237,0.16) !important;
+    color: #fff !important;
+}
+.btn-filled {
+    background: linear-gradient(135deg, var(--color-primary-accent), #69E8FF) !important;
+    color: #03111D !important;
+    border-color: transparent !important;
+    box-shadow: var(--glow-a);
+}
+.btn-filled:hover {
+    background: linear-gradient(135deg, #69E8FF, var(--color-secondary-accent)) !important;
+    color: #fff !important;
+}
+
+/* Hero */
+.hero {
+    min-height: 92vh;
+    display: grid;
+    align-items: center;
+    padding: 106px 0 92px;
+    background:
+        radial-gradient(circle at 22% 18%, rgba(0,212,255,calc(.26 - var(--scroll-violet) * .05)), transparent 34rem),
+        radial-gradient(circle at 75% 18%, rgba(124,58,237,calc(.20 + var(--scroll-violet) * .16)), transparent 34rem),
+        linear-gradient(180deg, #050A1A 0%, #061231 52%, #050A1A 100%);
+    text-align: center;
+}
+.hero .container { max-width: 980px; }
+.hero h1 {
+    color: #fff;
+    text-shadow: 0 10px 50px rgba(0, 212, 255, .16);
+}
+.hero p {
+    max-width: 780px;
+    margin-inline: auto;
+    color: var(--color-muted-dark);
+}
+.hero .breadcrumb {
+    display: inline-flex;
+    padding: 8px 14px;
+    border: 1px solid rgba(0,212,255,0.26);
+    border-radius: 999px;
+    background: rgba(13,22,40,0.64);
+    color: #B7F3FF;
+    font-size: 12px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+}
+.meta-bar {
+    justify-content: center;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: #B4C9E6;
+    margin: 32px auto;
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+.meta-bar span {
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.09);
+}
+.hero-liquid-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .92;
+}
+.hero-liquid-bg path {
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 40px rgba(0,212,255,.18));
+}
+.liquid-cursor {
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    border-radius: 48% 52% 59% 41% / 41% 48% 52% 59%;
+    background: radial-gradient(circle at 32% 30%, rgba(255,255,255,.8), rgba(0,212,255,.68) 36%, rgba(124,58,237,.36));
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: screen;
+    filter: blur(.4px) drop-shadow(0 0 18px rgba(0,212,255,.8));
+    transform: translate3d(-50%, -50%, 0);
+}
+.quick-answer {
+    position: relative;
+    background: rgba(13,22,40,0.76);
+    border: 1px solid rgba(0,212,255,0.22);
+    border-left: 4px solid var(--color-primary-accent);
+    padding: 26px 32px;
+    border-radius: 28px;
+    margin: 42px auto 32px;
+    max-width: 860px;
+    color: #E8F8FF;
+    box-shadow: var(--shadow-card), var(--glow-a);
+    backdrop-filter: blur(14px);
+    text-align: left;
+}
+.quick-answer::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(0,212,255,.34), rgba(124,58,237,.18), transparent);
+    z-index: -1;
+    filter: blur(14px);
+}
+.quick-answer-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--color-primary-accent);
+    text-transform: uppercase;
+    letter-spacing: .13em;
+    margin-bottom: 8px;
+    display: block;
+}
+
+/* Liquid shield */
+.liquid-shield-wrap {
+    margin: 48px auto 0;
+    max-width: 640px;
+    min-height: 320px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+.liquid-shield {
+    width: min(420px, 80vw);
+    aspect-ratio: .86;
+    position: relative;
+    clip-path: polygon(50% 0%, 88% 14%, 83% 62%, 50% 100%, 17% 62%, 12% 14%);
+    border-radius: 34px;
+    background: linear-gradient(135deg, rgba(0,212,255,.26), rgba(124,58,237,.38));
+    box-shadow: 0 44px 100px rgba(0,0,0,.38), 0 0 0 1px rgba(255,255,255,.16), var(--glow-a);
+    overflow: hidden;
+    animation: shieldPulseScale 3s ease-in-out infinite;
+}
+@keyframes shieldPulseScale { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.02);} }
+.liquid-shield svg {
+    position: absolute;
+    inset: -15%;
+    width: 130%;
+    height: 130%;
+}
+.shield-mark {
+    position: absolute;
+    inset: 22%;
+    border: 1px solid rgba(255,255,255,.28);
+    clip-path: polygon(50% 0%, 86% 16%, 80% 62%, 50% 100%, 20% 62%, 14% 16%);
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 54px;
+    text-shadow: 0 0 34px rgba(0,212,255,.55);
+    background: rgba(5,10,26,.18);
+    backdrop-filter: blur(8px);
+}
+
+/* Reusable media cards */
+.image-cluster {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin: 34px auto 48px;
+}
+.asset-card {
+    position: relative;
+    border-radius: 30px;
+    padding: 14px;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(0,212,255,.14), transparent 38%),
+        radial-gradient(circle at 100% 85%, rgba(124,58,237,.14), transparent 40%),
+        rgba(13,22,40,.72);
+    border: 1px solid rgba(224,242,254,0.14);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+}
+.bg-alt .asset-card {
+    background:
+        radial-gradient(circle at 15% 10%, rgba(0,212,255,.11), transparent 38%),
+        radial-gradient(circle at 100% 85%, rgba(124,58,237,.10), transparent 40%),
+        rgba(255,255,255,.74);
+    border-color: var(--color-border-light);
+    box-shadow: 0 24px 70px rgba(12, 26, 46, .12);
+}
+.asset-card::before {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: -70px;
+    top: -80px;
+    background: radial-gradient(circle, rgba(0,212,255,.20), transparent 64%);
+    border-radius: 42% 58% 60% 40% / 48% 42% 58% 52%;
+    opacity: .8;
+    pointer-events: none;
+}
+.asset-card img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: rgba(255,255,255,0.03);
+}
+.asset-card.tall img { max-height: 420px; object-fit: contain; margin: 0 auto; }
+.asset-card.wide { grid-column: 1 / -1; }
+.asset-card.wide img { max-height: 520px; object-fit: contain; margin: 0 auto; }
+.asset-card.logo-card {
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+    padding: 0;
+}
+.asset-card.logo-card img {
+    max-width: 260px;
+    margin: 0 auto;
+}
+.hero-media {
+    margin: 44px auto 0;
+    max-width: 900px;
+}
+.section-media { margin: 38px 0 46px; }
+.feature-media {
+    margin-top: 18px;
+    max-width: 520px;
+}
+
+/* Section Badge */
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: rgba(0,212,255,0.11);
+    color: var(--color-primary-accent);
+    font-size: 12px;
+    font-weight: 800;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: .11em;
+    margin-bottom: 16px;
+    border: 1px solid rgba(0,212,255,.18);
+    opacity: 0;
+    transform: translateY(10px) scale(.96);
+    transition: all 0.65s cubic-bezier(.19,1,.22,1);
+}
+.bg-alt .section-badge {
+    color: #2563EB;
+    background: rgba(14,165,233,0.10);
+    border-color: rgba(14,165,233,.18);
+}
+.section-badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary-accent), var(--color-secondary-accent));
+    box-shadow: 0 0 15px rgba(0,212,255,.75);
+}
+.section-badge.visible, section.visible .section-badge { opacity: 1; transform: translateY(0) scale(1); }
+
+/* Boxes & Widgets */
+.disclaimer-box {
+    border: 1px solid rgba(245,158,11,.28);
+    background: linear-gradient(135deg, rgba(245,158,11,.12), rgba(255,255,255,.76));
+    padding: 26px;
+    border-radius: 26px;
+    margin-bottom: 32px;
+    font-size: 15px;
+    color: var(--color-body-text-light);
+    box-shadow: 0 20px 50px rgba(12,26,46,.08);
+}
+.disclaimer-box h4 {
+    color: #A15C00;
+    margin-bottom: 8px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .11em;
+}
+#advanced-methods .disclaimer-box {
+    color: #E0F2FE;
+    background: linear-gradient(135deg, rgba(245,158,11,.14), rgba(13,22,40,.88));
+}
+
+.scenario-widget {
+    background: rgba(255,255,255,.78);
+    padding: 32px;
+    border-radius: 30px;
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 24px 70px rgba(12,26,46,.12);
+    margin-bottom: 48px;
+    backdrop-filter: blur(12px);
+}
+.scenario-widget h3 { margin-top: 0; font-size: 1.4rem; }
+.scenario-options { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+.scenario-btn {
+    text-align: left;
+    padding: 17px 18px;
+    border: 1px solid rgba(12,26,46,.12);
+    border-radius: 18px;
+    background: rgba(255,255,255,.78);
+    cursor: pointer;
+    color: var(--color-body-text-light);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform .22s ease, border-color .22s ease, background .22s ease;
+}
+.scenario-btn:hover {
+    transform: translateX(4px);
+    border-color: rgba(14,165,233,.55);
+    background: rgba(14,165,233,.08);
+}
+.scenario-result {
+    margin-top: 24px;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(14,165,233,.11), rgba(124,58,237,.10));
+    border-radius: 22px;
+    display: none;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    margin: 34px auto;
+    background: rgba(13,22,40,.78);
+    border: 1px solid var(--color-border-dark);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(14px);
+}
+.slider-tabs { display: flex; border-bottom: 1px solid var(--color-border-dark); }
+.slider-tab {
+    flex: 1;
+    padding: 18px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 800;
+    color: var(--color-muted-dark);
+    background: rgba(255,255,255,.03);
+    transition: .2s;
+}
+.slider-tab.active {
+    background: linear-gradient(135deg, rgba(0,212,255,.14), rgba(124,58,237,.12));
+    color: #fff;
+    border-bottom: 2px solid var(--color-primary-accent);
+}
+.slider-content { padding: 28px; display: none; }
+.slider-content.active { display: block; }
+
+/* Premium SaaS Moment */
+.saas-moment {
+    background:
+        radial-gradient(circle at 25% 10%, rgba(0,212,255,.24), transparent 34rem),
+        radial-gradient(circle at 88% 20%, rgba(124,58,237,.32), transparent 36rem),
+        linear-gradient(180deg, #060B1B 0%, #0D1628 100%);
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+.saas-moment h2 { color: #fff; font-size: clamp(34px, 5vw, 56px); margin-top: 0; }
+.saas-moment p { color: #BBD4F3; font-size: 1.1rem; max-width: 740px; margin: 0 auto 32px; }
+.saas-chips {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+.chip {
+    background: rgba(255,255,255,.08);
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #E0F2FE;
+    border: 1px solid rgba(224,242,254,.13);
+    backdrop-filter: blur(8px);
+}
+.saas-mockup {
+    max-width: 800px;
+    margin: 40px auto 0;
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.42);
+    border: 1px solid rgba(255,255,255,.14);
+}
+
+/* Z-Pattern */
+.z-row {
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    margin-bottom: 72px;
+}
+.z-row:nth-child(even) { flex-direction: row-reverse; }
+.z-content { flex: 1; }
+.z-visual {
+    flex: 1;
+    background:
+        radial-gradient(circle at 16% 20%, rgba(0,212,255,.16), transparent 42%),
+        radial-gradient(circle at 100% 100%, rgba(124,58,237,.18), transparent 48%),
+        rgba(13,22,40,.78);
+    border: 1px solid var(--color-border-dark);
+    border-radius: 30px;
+    padding: 34px;
+    text-align: center;
+    box-shadow: var(--shadow-card);
+}
+
+/* Feature Display */
+.feature-row {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 32px;
+    border-bottom: 1px solid rgba(224,242,254,0.12);
+    padding-bottom: 28px;
+}
+.bg-alt .feature-row { border-bottom-color: rgba(12,26,46,.11); }
+.feature-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 17px;
+    background: linear-gradient(135deg, var(--color-primary-accent), var(--color-secondary-accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: var(--glow-a);
+}
+
+/* Table */
+.table-wrapper { overflow-x: auto; margin: 38px 0; border-radius: 28px; }
+table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    background: rgba(255,255,255,.82);
+    box-shadow: 0 24px 70px rgba(12,26,46,.12);
+    border-radius: 28px;
+    overflow: hidden;
+    color: var(--color-body-text-light);
+}
+th, td { padding: 17px 22px; text-align: left; border-bottom: 1px solid rgba(12,26,46,.10); }
+th {
+    background: linear-gradient(135deg, rgba(14,165,233,.12), rgba(124,58,237,.10));
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-body-text-light);
+}
+tr.highlighted {
+    background: rgba(14,165,233,.12);
+    border-left: 4px solid var(--color-primary-accent);
+}
+
+/* FAQ */
+.faq-bubble-container { margin-bottom: 24px; }
+.faq-q {
+    background: linear-gradient(135deg, rgba(0,212,255,.14), rgba(124,58,237,.14));
+    padding: 16px 24px;
+    border-radius: 24px 24px 24px 8px;
+    margin-bottom: 8px;
+    font-weight: 800;
+    display: inline-block;
+    max-width: 85%;
+    border: 1px solid rgba(0,212,255,.18);
+}
+.faq-a {
+    background: rgba(13,22,40,.74);
+    padding: 20px 24px;
+    border-radius: 24px 24px 8px 24px;
+    border: 1px solid var(--color-border-dark);
+    max-width: 90%;
+    margin-left: auto;
+    display: block;
+    box-shadow: 0 18px 48px rgba(0,0,0,.18);
+}
+
+/* Morph Progress Indicator */
+.morph-progress {
+    position: fixed;
+    width: 54px;
+    height: 54px;
+    right: 24px;
+    bottom: 24px;
+    z-index: 120;
+    border-radius: 52% 48% 45% 55% / 48% 55% 45% 52%;
+    background: conic-gradient(from 180deg, var(--color-primary-accent), var(--color-secondary-accent));
+    box-shadow: var(--glow-a), var(--glow-b);
+    transform: scale(.72);
+    transition: border-radius .22s ease, transform .22s ease;
+}
+.morph-progress::before {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border-radius: inherit;
+    background: #050A1A;
+}
+.morph-progress::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle at 30% 28%, rgba(255,255,255,.8), transparent 25%);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(180deg, #071026 0%, #030712 100%);
+    color: #9DB8D9;
+    padding: 70px 0 34px;
+    font-size: 15px;
+    border-top: 1px solid var(--color-border-dark);
+}
+footer h4 {
+    color: #fff;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: .11em;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+    gap: 40px;
+    margin-bottom: 48px;
+}
+footer a { color: #BBD4F3; }
+footer a:hover { color: #fff; text-decoration: none; }
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.10);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 13px;
+}
+
+/* Code blocks inline visuals */
+code {
+    color: #B7F3FF;
+    background: rgba(0,212,255,.10);
+    padding: .12em .38em;
+    border-radius: .5em;
+}
+.bg-alt code {
+    color: #075985;
+    background: rgba(14,165,233,.12);
+}
+
+/* Responsive */
+@media(max-width: 900px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 16px;
+        right: 16px;
+        background: rgba(5,10,26,.96);
+        padding: 24px;
+        border: 1px solid var(--color-border-dark);
+        border-radius: 24px;
+        box-shadow: var(--shadow-card);
+    }
+    .nav-links.active { display: flex; }
+    .menu-toggle { display: block; }
+    .z-row, .z-row:nth-child(even) { flex-direction: column; }
+    .image-cluster { grid-template-columns: 1fr; }
+    .saas-moment { padding: 64px 0; }
+    .hero { min-height: auto; }
+    .blob-3 { display: none; }
+}
+@media(max-width: 600px) {
+    :root { --section-padding-v: 66px; }
+    body { font-size: 16px; }
+    .liquid-cursor { display: none; }
+    .hero { padding-top: 88px; }
+    .quick-answer { padding: 22px; border-radius: 22px; }
+    .slider-tabs { flex-direction: column; }
+    .feature-row { flex-direction: column; }
+    .morph-progress { width: 44px; height: 44px; right: 16px; bottom: 16px; }
+    .brand-lockup, .site-name { font-size: 18px; }
+    .brand-icon { width: 38px; height: 38px; flex-basis: 38px; }
+}
+</style>
+</head>
+<body><div aria-hidden="true" class="morph-progress"></div>
+<header>
+<div class="nav-container">
+<a class="site-name" href="/">
+<span aria-label="Excel Unlock Guide" class="brand-lockup">
+<svg aria-hidden="true" class="brand-icon" focusable="false" viewbox="0 0 64 64">
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="brandLiquidGradient" x1="10" x2="56" y1="8" y2="58">
+<stop offset="0" stop-color="#00D4FF"></stop>
+<stop offset="0.58" stop-color="#0EA5E9"></stop>
+<stop offset="1" stop-color="#7C3AED"></stop>
+</lineargradient>
+<filter height="160%" id="brandGlow" width="160%" x="-30%" y="-30%">
+<fegaussianblur result="blur" stddeviation="2.2"></fegaussianblur>
+<femerge>
+<femergenode in="blur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<path class="shield-fill" d="M32 5 52 13v18c0 14.8-8.5 23.8-20 28-11.5-4.2-20-13.2-20-28V13L32 5Z" fill="url(#brandLiquidGradient)" filter="url(#brandGlow)"></path>
+<path d="M24 31.4 30 37l12-14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+<path d="M32 10 47 16v14.5c0 10.6-5.7 18.1-15 22-9.3-3.9-15-11.4-15-22V16l15-6Z" fill="none" stroke="rgba(255,255,255,.38)" stroke-width="1.5"></path>
+</svg>
+<span>Excel Unlock Guide</span>
+</span>
+</a>
+<div aria-label="Toggle Navigation" class="menu-toggle">☰</div>
+<nav class="nav-links">
+<a href="#overview">Overview</a>
+<a href="#methods">Methods</a>
+<a href="#recommendation">Software</a>
+<a href="#faq">FAQ</a>
+<a class="btn btn-outline" href="#recommendation" style="padding: 8px 16px; font-size: 13px;">See Our Top Pick →</a>
+</nav>
+</div>
+</header>
+<main>
+<!-- S1: Hero -->
+<section class="hero">
+<svg aria-hidden="true" class="hero-liquid-bg" preserveaspectratio="xMidYMid slice" viewbox="0 0 1440 900">
+<defs>
+<lineargradient id="heroBlobOne" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="#0EA5E9"></stop>
+<stop offset="1" stop-color="#8B5CF6"></stop>
+</lineargradient>
+<lineargradient id="heroBlobTwo" x1="0" x2="1" y1="1" y2="0">
+<stop offset="0" stop-color="#06B6D4"></stop>
+<stop offset="1" stop-color="#7C3AED"></stop>
+</lineargradient>
+<lineargradient id="heroBlobThree" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0" stop-color="#00D4FF"></stop>
+<stop offset="1" stop-color="#0EA5E9"></stop>
+</lineargradient>
+</defs>
+<path class="blob-1" d="M310 230 C390 125 530 146 585 250 C640 354 568 484 445 520 C322 556 188 492 168 365 C148 238 230 335 310 230 Z" fill="url(#heroBlobOne)" id="hero-blob-1" opacity=".42"></path>
+<path class="blob-2" d="M928 154 C1052 82 1212 170 1224 315 C1236 460 1114 571 958 536 C802 501 764 358 814 262 C864 166 804 226 928 154 Z" fill="url(#heroBlobTwo)" id="hero-blob-2" opacity=".38"></path>
+<path class="blob-3" d="M625 605 C730 510 892 540 954 666 C1016 792 850 872 705 836 C560 800 428 780 450 662 C472 544 520 700 625 605 Z" fill="url(#heroBlobThree)" id="hero-blob-3" opacity=".22"></path>
+</svg>
+<div aria-hidden="true" class="liquid-cursor"></div>
+
+<div class="container">
+<div class="breadcrumb">Guides / Document Security / Excel</div>
+<h1>How to Remove Password Protection from an Excel File or Sheet</h1>
+<p>If you are locked out of your own spreadsheet, removing the password depends heavily on whether it is an "open" password or a "sheet modification" password. Here is the complete, owner-safe guide to unlocking your data.</p>
+<div class="meta-bar">
+<span>Editorial Team</span>
+<span>Updated: October 2023</span>
+<span>8 min read</span>
+</div>
+<div class="quick-answer">
+<span class="quick-answer-label">Quick Answer</span>
+<p>To remove a password you know: Open the file, go to <strong>File &gt; Info &gt; Protect Workbook &gt; Encrypt with Password</strong>. Clear the password field and save. If you forgot a sheet protection password, you can safely remove it by changing the file extension to .zip and editing the internal XML code. However, if you forgot a file "open" password, Excel's <a href="https://psbios.com/file-encryption-explained/" rel="noopener noreferrer" target="_blank">AES-256 encryption</a> makes it impossible to remove without specialized recovery tools or backups.</p>
+</div>
+
+<div aria-hidden="true" class="liquid-shield-wrap">
+<div class="liquid-shield">
+<svg preserveaspectratio="xMidYMid slice" viewbox="0 0 500 500">
+<defs>
+<lineargradient id="shieldLiquid" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="#00D4FF"></stop>
+<stop offset=".55" stop-color="#0EA5E9"></stop>
+<stop offset="1" stop-color="#7C3AED"></stop>
+</lineargradient>
+</defs>
+<path d="M77 236 C116 98 267 78 362 158 C457 238 435 396 308 430 C181 464 38 374 77 236 Z" fill="url(#shieldLiquid)" id="shield-liquid-1" opacity=".94"></path>
+<path d="M122 376 C190 294 330 292 394 372 C458 452 306 536 182 484 C58 432 54 458 122 376 Z" fill="#8B5CF6" id="shield-liquid-2" opacity=".46"></path>
+</svg>
+<div class="shield-mark">✓</div>
+</div>
+</div>
+
+<div class="asset-card wide hero-media">
+<img alt="Secure data unlocking concept for an owner accessing protected Excel files" loading="lazy" src="https://i.ibb.co/gLVNxgq4/Accessing-Data-Unlocking.jpg"/>
+</div>
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#050A1A" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S2: Table of Contents & S3: Disclaimer/Scenario -->
+<section class="bg-alt" id="overview">
+<div class="container">
+<div class="disclaimer-box">
+<h4>Legality &amp; Ownership Warning</h4>
+<p>This guide is intended exclusively for legitimate document owners who have forgotten their own passwords. Attempting to bypass, crack, or remove passwords from files you do not own or are not authorized to access is unethical and legally restricted. We do not provide brute-force cracking tools.</p>
+</div>
+<div class="asset-card section-media sensitive-data-media">
+<img alt="Sensitive spreadsheet data protected with layered digital security" loading="lazy" src="https://i.ibb.co/Zpt5NfpT/sensitive-personal-data.jpg"/>
+</div>
+
+<span class="section-badge">Find Your Solution</span>
+<h2>What situation are you in right now?</h2>
+<div class="scenario-widget" id="scenario-quiz">
+<p>Select your exact issue to jump to the right solution:</p>
+<div class="scenario-options">
+<button class="scenario-btn" data-target="know-password">"I know the password, I just want to turn off the prompt."</button>
+<button class="scenario-btn" data-target="forgot-sheet">"I can open the file, but I can't edit cells (forgot sheet password)."</button>
+<button class="scenario-btn" data-target="forgot-open">"I can't even open the file (forgot open password)."</button>
+</div>
+<div class="scenario-result" id="scenario-result">
+<!-- JS injects result here -->
+</div>
+</div>
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#EFF6FF" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S4: Direct Answer & Overview (Open vs Permissions) -->
+<section id="understanding">
+<div class="container">
+<span class="section-badge">The Basics</span>
+<h2>Open Password vs Permissions Password — Explained</h2>
+<p>Before trying to remove password protection from an Excel file, you must identify what kind of lock is active. Excel handles security in two fundamentally different ways:</p>
+<div class="slider-container">
+<div class="slider-tabs">
+<div class="slider-tab active" data-tab="tab-open">File Open Password</div>
+<div class="slider-tab" data-tab="tab-sheet">Sheet/Workbook Protection</div>
+</div>
+<div class="slider-content active" id="tab-open">
+<h3>File Open Password (Encryption)</h3>
+<p><strong>What it does:</strong> Encrypts the entire file. You cannot view any data without the password.</p>
+<p><strong>Security Level:</strong> High (AES-256). Very difficult to bypass if forgotten.</p>
+<p><strong>Removal:</strong> Easy if you know it. Nearly impossible if lost.</p>
+</div>
+<div class="slider-content" id="tab-sheet">
+<h3>Sheet/Workbook Protection (Permissions)</h3>
+<p><strong>What it does:</strong> Stops users from editing cells, hiding columns, or modifying the layout. You can still see the data.</p>
+<p><strong>Security Level:</strong> Low. It is a restriction rule, not true encryption.</p>
+<p><strong>Removal:</strong> Can be removed relatively easily using the ZIP XML method or VBA macros, even if forgotten.</p>
+</div>
+</div>
+<div class="image-cluster encryption-media-cluster">
+<div class="asset-card">
+<img alt="Encryption explainer graphic showing how protected files are secured" loading="lazy" src="https://i.ibb.co/gZ8Tcbqc/what-is-encryption-complete-explainer-for-beginners.jpg"/>
+</div>
+<div class="asset-card">
+<img alt="Encryption software workflow illustration for file password security" loading="lazy" src="https://i.ibb.co/hJngV20r/what-is-encryption-software-and-how-does-it-work.jpg"/>
+</div>
+</div>
+
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#050A1A" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S5: Method 1 - Native OS (Know the password) -->
+<section class="bg-alt" id="methods">
+<div class="container">
+<span class="section-badge">Method 1</span>
+<h2>How to Remove Password Protection from Excel Files (If You Know the Password)</h2>
+<p>If you simply want to stop entering a password every time you open a document you own, you can disable the protection using Excel's built-in settings.</p>
+<ol>
+<li><strong>Open the Excel file</strong> and enter the current password to gain access.</li>
+<li>Click on the <strong>File</strong> tab in the top left corner.</li>
+<li>Navigate to <strong>Info</strong> in the left sidebar.</li>
+<li>Click the <strong>Protect Workbook</strong> dropdown button.</li>
+<li>Select <strong>Encrypt with Password</strong>.</li>
+<li>A dialog box will appear showing your current password as hidden characters (dots/asterisks). <strong>Delete all the characters</strong> so the field is completely blank.</li>
+<li>Click <strong>OK</strong>.</li>
+<li><strong>Save the file</strong> (Ctrl + S). The next time you open it, no password will be required.</li>
+</ol>
+<div class="asset-card section-media remove-password-media">
+<img alt="Password lock screen security visual for removing a known Excel file password" loading="lazy" src="https://i.ibb.co/xtZC7X09/lock-screen-security.jpg"/>
+</div>
+
+<h3>Confirmation Steps</h3>
+<p>To verify it worked, close Excel completely and double-click the file to reopen it. If it opens directly to the data without a prompt, the removal was successful.</p>
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#EFF6FF" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S6 & S7: Z-Pattern Guides for forgotten passwords -->
+<section id="advanced-methods">
+<div class="container">
+<span class="section-badge">Advanced Recovery</span>
+<h2>Remove Excel Sheet Password — Without the Password</h2>
+<p>If you forgot the password that restricts editing (but can still view the file), you can remove the protection by editing the file's underlying XML structure.</p>
+<div class="z-row">
+<div class="z-content">
+<h3>The ZIP/XML Method</h3>
+<p>Because modern Excel files (.xlsx) are actually zipped archives of XML files, you can open them up and delete the specific line of code that enforces the sheet lock.</p>
+<ol>
+<li>Create a backup copy of your Excel file.</li>
+<li>Rename the file extension from <code>.xlsx</code> to <code>.zip</code>.</li>
+<li>Open the ZIP file and navigate to <code>xl\worksheets\</code>.</li>
+<li>Extract the specific sheet (e.g., <code>sheet1.xml</code>).</li>
+<li>Open the XML file in Notepad and find the tag <code>&lt;sheetProtection.../&gt;</code>. Delete this entire tag.</li>
+<li>Save the XML, place it back into the ZIP archive, and rename the extension back to <code>.xlsx</code>.</li>
+</ol>
+</div>
+<div class="z-visual">
+<div style="font-family: monospace; text-align: left; background: #fff; padding: 16px; border-radius: 4px; font-size: 13px; color: #555; overflow-x: hidden;">
+                        &lt;worksheet&gt;<br/>
+                          &lt;sheetViews&gt;...&lt;/sheetViews&gt;<br/>
+                          <span style="color: #c0392b; text-decoration: line-through;">&lt;sheetProtection algorithmName="SHA-512" hashValue="x8H..." /&gt;</span><br/>
+                          &lt;sheetData&gt;...&lt;/sheetData&gt;<br/>
+                        &lt;/worksheet&gt;
+                    </div>
+
+<div class="asset-card section-media" style="margin-bottom:0;">
+<img alt="Virtual worksheet file showing Excel sheet protection data structure" loading="lazy" src="https://i.ibb.co/ZRsTRpZQ/sheet-of-virtual-paper.jpg"/>
+</div>
+</div>
+</div>
+<div class="z-row">
+<div class="z-content">
+<h3>Using a VBA Macro</h3>
+<p>For older Excel files (.xls), you can use a Visual Basic for Applications (VBA) macro to cycle through and crack the sheet protection locally.</p>
+<p>Press <code>Alt + F11</code> to open the VBA editor, insert a new module, and run a standard unprotect macro. Note that Microsoft disabled this capability for modern AES-encrypted .xlsx files, so this only works for legacy formats.</p>
+</div>
+<div class="z-visual">
+<div style="font-size: 48px; font-weight: 700; color: var(--color-primary-accent); opacity: 0.2;">VBA</div>
+<p style="font-weight: 500; margin-top: -20px;">Legacy .XLS Only</p>
+
+<div class="asset-card section-media" style="margin-bottom:0;">
+<img alt="Keyboard shortcut workflow for using VBA editor in legacy Excel files" loading="lazy" src="https://i.ibb.co/vpWzKVd/computer-keyboard.jpg"/>
+</div>
+</div>
+</div>
+<div class="disclaimer-box" style="margin-top: 32px;">
+<h4>What to Do If You Forget a Document Password (Open Password)</h4>
+<p>If you cannot even open the file, neither the ZIP method nor VBA will work. Excel uses AES-256 encryption. Your only legitimate options are restoring a previous unprotected version from cloud backups (OneDrive/Google Drive versions) or finding where you might have saved the password in a password manager.</p>
+</div>
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#050A1A" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S8: Premium SaaS Moment (Layer 2 Transition) -->
+<section class="saas-moment" id="recommendation">
+<div class="container-wide">
+<h2>Stop Relying on Clunky File Passwords.</h2>
+<p>Excel's built-in password feature is notoriously easy to lose, hard to manage in bulk, and offers zero protection if the file is moved to an unauthorized USB drive. If you need serious document security, we recommend dedicated software.</p>
+<div class="saas-chips">
+<div class="chip">✓ Military-Grade AES-256</div>
+<div class="chip">✓ Windows, Mac, iOS &amp; Android</div>
+<div class="chip">✓ Cloud Sync (Google Drive/Dropbox)</div>
+<div class="chip">✓ Secure USB Lockers</div>
+</div>
+<p style="color: #fff; font-size: 1.1rem; max-width: 700px; margin: 0 auto 32px;">
+                Instead of managing fragile, individual Excel passwords, <strong>Folder Lock</strong> secures your entire workflow with <a href="https://www.cloudwards.net/best-encryption-software/" rel="noopener noreferrer" target="_blank">military-grade AES 256-bit encryption</a>. Whether you need to sync protected files across your Mac and Windows PC, access them securely via iOS and Android apps, or back up encrypted lockers to the cloud, it provides a comprehensive privacy shield that built-in Office tools simply cannot match. You can start securing files immediately with a free 1GB locker.
+            </p>
+<div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 24px;">
+<a class="btn btn-filled" href="https://www.newsoftwares.net/download/folderlock10-en/folder-lock-en.exe" rel="noopener noreferrer" style="background: #fff; color: var(--color-primary-accent); border-color: #fff;" target="_blank">Try Folder Lock Free →</a>
+<a class="btn btn-outline" href="https://store.newsoftwares.net/?add=fl10" rel="noopener noreferrer" style="color: #fff; border-color: rgba(255,255,255,0.4);" target="_blank">Get the Full Version →</a>
+</div>
+<div class="image-cluster product-media-cluster">
+<div class="asset-card wide">
+<img alt="Folder Lock 10 main dashboard for managing encrypted file lockers" loading="lazy" src="https://i.ibb.co/ynCZTHt1/folder-lock-10-main-screen.png"/>
+</div>
+<div class="asset-card tall">
+<img alt="Folder Lock 10 product boxshot for dedicated encryption software" loading="lazy" src="https://i.ibb.co/xSFPPmSR/folder-lock-10-boxshot-new-4.png"/>
+</div>
+<div class="asset-card">
+<img alt="Folder Lock 10 desktop locker screen for protected document storage" loading="lazy" src="https://i.ibb.co/210hR8f6/folder-lock-10-desktop-locker-screen.png"/>
+</div>
+<div class="asset-card">
+<img alt="Folder Lock cloud backup screen for syncing encrypted lockers" loading="lazy" src="https://i.ibb.co/nqrsfg37/folder-lock-cloud-screen.png"/>
+</div>
+</div>
+
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#050A1A" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S9: Features (V1) & S10: Comparison (V6) -->
+<section class="bg-alt" id="comparison">
+<div class="container">
+<span class="section-badge">Better Security</span>
+<h2>Why Document Password Protection Is Not the Same as Full Encryption</h2>
+<p>Using Excel's native tools vs using a dedicated document security tool yields very different results. Here is how Folder Lock handles document security compared to native Office tools.</p>
+<div style="margin-top: 40px;">
+<div class="feature-row">
+<div class="feature-icon">1</div>
+<div>
+<h3>Batch Document Password Protection</h3>
+<p>Instead of manually opening and saving 50 Excel files to assign passwords, you simply drag them into an encrypted locker. They are all instantly secured.</p>
+</div>
+</div>
+<div class="feature-row">
+<div class="feature-icon">2</div>
+<div>
+<h3>Advanced Permission Controls (Folder Protect)</h3>
+<p>While Excel only stops cell editing, specialized tools like <em>Folder Protect</em> allow you to set exact system-level rules. You can let users view a spreadsheet but completely block them from copying, modifying, or deleting the file from the hard drive.</p>
+
+<div class="asset-card feature-media">
+<img alt="Folder Lock safeguard screen showing folder protection controls for spreadsheets" loading="lazy" src="https://i.ibb.co/pj61MNWJ/folder-lock-10-screenshot-safeguard-protect-folders.png"/>
+</div>
+</div>
+</div>
+<div class="feature-row">
+<div class="feature-icon">3</div>
+<div>
+<h3>Seamless Device Syncing &amp; Cloud Backup</h3>
+<p>Native Excel passwords offer no help if your device is lost. Dedicated security software allows you to securely back up encrypted lockers to <a href="https://www.windowscentral.com/how-encrypt-data-storing-it-cloud-and-why-you-should" rel="noopener noreferrer" target="_blank">Google Drive or Dropbox</a>, and synchronize your protected data seamlessly across up to 5 devices, including Windows, macOS, Android, and iOS.</p>
+
+<div class="asset-card feature-media">
+<img alt="Backup encryption platforms graphic for protected cloud synchronization" loading="lazy" src="https://i.ibb.co/QFzKdFBR/backup-encryption-platforms.jpg"/>
+</div>
+</div>
+</div>
+<div class="feature-row">
+<div class="feature-icon">4</div>
+<div>
+<h3>Portable Lockers &amp; File Shredding</h3>
+<p>Need to take your financial spreadsheets on the go? You can create <a href="https://techleez.co.uk/why-you-should-password-protect-your-usb-drive/" rel="noopener noreferrer" target="_blank">portable secure lockers on USB drives</a>. Additionally, when you no longer need a sensitive document, military-grade file shredding ensures it cannot be recovered by data restoration tools, leaving no trace behind.</p>
+
+<div class="asset-card feature-media">
+<img alt="Portable locker screenshot for securing spreadsheet files on USB drives" loading="lazy" src="https://i.ibb.co/wNkcx3WC/folder-lock-10-screenshot-safeguard-portable-lockers.png"/>
+</div>
+</div>
+</div>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Difficulty to Bypass</th>
+<th>Can Lock Multiple Files?</th>
+<th>Stops Deletion?</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Excel Sheet Protection</td>
+<td>Very Low (ZIP method)</td>
+<td>No</td>
+<td>No</td>
+<td>Preventing accidental typos</td>
+</tr>
+<tr>
+<td>Excel File Open Password</td>
+<td>High (AES-256)</td>
+<td>No</td>
+<td>No</td>
+<td>Single sensitive documents</td>
+</tr>
+<tr>
+<td>Folder Protect Software</td>
+<td>High (System-level)</td>
+<td>Yes (Including Extensions)</td>
+<td>Yes (Customizable)</td>
+<td>Granular access control</td>
+</tr>
+<tr class="highlighted">
+<td>Folder Lock Software</td>
+<td>Extremely High (AES-256)</td>
+<td>Yes (Unlimited)</td>
+<td>Yes</td>
+<td>Complete data privacy &amp; sync</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#EFF6FF" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S11: FAQ (V5 Chat Bubble) -->
+<section id="faq">
+<div class="container">
+<span class="section-badge">Common Questions</span>
+<h2>Frequently Asked Questions</h2>
+<p>If you are still struggling to remove Excel password protection, check these common troubleshooting answers.</p>
+<div class="faq-bubble-container">
+<div class="faq-q">How Do I Remove Password Protection from an Excel File?</div>
+<div class="faq-a">If you know the password, go to File &gt; Info &gt; Protect Workbook &gt; Encrypt with Password, delete the existing password, click OK, and save the file.</div>
+</div>
+<div class="faq-bubble-container">
+<div class="faq-q">How to remove password protection from an Excel sheet without the password?</div>
+<div class="faq-a">You can rename the .xlsx file to .zip, open the archive, find the specific worksheet XML file, and delete the <code>&lt;sheetProtection&gt;</code> tag. Save and rename it back to .xlsx.</div>
+</div>
+<div class="faq-bubble-container">
+<div class="faq-q">What is the difference between sheet protection and file password in Excel?</div>
+<div class="faq-a">Sheet protection stops people from modifying cells but lets them read the data. A file password (open password) encrypts the whole document so it cannot even be viewed without the key.</div>
+</div>
+<div class="faq-bubble-container">
+<div class="faq-q">How to remove a workbook password in Excel?</div>
+<div class="faq-a">Go to the Review tab, click "Protect Workbook" (which will be highlighted if active). It will prompt you for the password. Enter it, and the protection will toggle off.</div>
+</div>
+<div class="faq-bubble-container">
+<div class="faq-q">Can I remove Excel password protection online?</div>
+<div class="faq-a">There are online services claiming to remove passwords, but uploading sensitive Excel data to an unverified third-party website is a massive security risk. We highly recommend doing it locally.</div>
+</div>
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#050A1A" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S12: Deep Dive / Context -->
+<section class="bg-alt">
+<div class="container">
+<span class="section-badge">Compliance</span>
+<h2>Legal and Ethical Considerations</h2>
+<p>When searching for "how do you remove password protection from an Excel file", intent matters. Document security software and built-in protections exist to maintain confidentiality and data integrity.</p>
+<p>Removing passwords from documents you legally own is perfectly fine. However, attempting to strip metadata, use third-party cracking tools, or manipulate XML data to bypass permissions on files belonging to an employer, client, or external agency violates most digital compliance standards. If you regularly manage sensitive files, relying on centralized tools developed by <a href="https://newsoftwares.net/" rel="noopener noreferrer" target="_blank">NewSoftwares.net</a> provides an auditable, secure framework rather than ad-hoc Excel passwords.</p>
+<div class="asset-card section-media compliance-media">
+<img alt="Audit trail and data logging concept for ethical document security compliance" loading="lazy" src="https://i.ibb.co/W4JBsgpd/audit-trail-data-logging.jpg"/>
+</div>
+
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#EFF6FF" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+<!-- S13: Final Verdict -->
+<section id="verdict" style="text-align: center;">
+<div class="container">
+<h2>Our Verdict</h2>
+<div class="asset-card section-media verdict-media">
+<img alt="Security shield protecting encrypted documents and folders" loading="lazy" src="https://i.ibb.co/bjywWFhL/security-shield-protecting.jpg"/>
+</div>
+
+<p style="max-width: 600px; margin: 0 auto 32px;">Removing a password from Excel is easy if you know it, and relatively straightforward if it's just a sheet lock. However, if you're dealing with true file encryption, forgotten passwords usually mean lost data. For robust, manageable security that protects entire folders, syncs seamlessly across your mobile and desktop devices, and backs up safely to the cloud, we strongly recommend upgrading to <a href="https://nira.com/best-encryption-software/" rel="noopener noreferrer" target="_blank">dedicated encryption software</a>.</p>
+<div style="display: flex; gap: 16px; justify-content: center;">
+<a class="btn btn-outline" href="https://www.newsoftwares.net/download/folderlock10-en/folder-lock-en.exe" rel="noopener noreferrer" target="_blank">Try Folder Lock Free →</a>
+<a class="btn btn-outline" href="https://store.newsoftwares.net/?add=fl10" rel="noopener noreferrer" target="_blank">View Full Version →</a>
+</div>
+</div>
+
+<svg aria-hidden="true" class="liquid-divider" preserveaspectratio="none" style="color:#050A1A" viewbox="0 0 1440 120">
+<path d="M0,82 C118,36 200,98 326,62 C442,29 496,14 632,58 C756,98 844,104 960,62 C1086,16 1226,25 1440,72 L1440,120 L0,120 Z"></path>
+</svg>
+</section>
+</main>
+<footer>
+<div class="container-wide">
+<div class="footer-grid">
+<div>
+<a class="site-name" href="/">
+<span aria-label="Excel Unlock Guide" class="brand-lockup">
+<svg aria-hidden="true" class="brand-icon" focusable="false" viewbox="0 0 64 64">
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="brandLiquidGradient" x1="10" x2="56" y1="8" y2="58">
+<stop offset="0" stop-color="#00D4FF"></stop>
+<stop offset="0.58" stop-color="#0EA5E9"></stop>
+<stop offset="1" stop-color="#7C3AED"></stop>
+</lineargradient>
+<filter height="160%" id="brandGlow" width="160%" x="-30%" y="-30%">
+<fegaussianblur result="blur" stddeviation="2.2"></fegaussianblur>
+<femerge>
+<femergenode in="blur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<path class="shield-fill" d="M32 5 52 13v18c0 14.8-8.5 23.8-20 28-11.5-4.2-20-13.2-20-28V13L32 5Z" fill="url(#brandLiquidGradient)" filter="url(#brandGlow)"></path>
+<path d="M24 31.4 30 37l12-14" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"></path>
+<path d="M32 10 47 16v14.5c0 10.6-5.7 18.1-15 22-9.3-3.9-15-11.4-15-22V16l15-6Z" fill="none" stroke="rgba(255,255,255,.38)" stroke-width="1.5"></path>
+</svg>
+<span>Excel Unlock Guide</span>
+</span>
+</a>
+<p style="margin-top: 16px; font-size: 14px;">The complete owner's guide to managing and removing Excel document protection.</p>
+</div>
+<div>
+<h4>Navigation</h4>
+<ul style="list-style: none;">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#methods">Removal Methods</a></li>
+<li><a href="#understanding">Password Types</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4>Related Tools</h4>
+<ul style="list-style: none;">
+<li><a href="https://cloudstorageinfo.org/folder-lock-review" rel="noopener noreferrer" target="_blank">Folder Lock</a></li>
+<li><a href="https://mspoweruser.com/secure-your-data-top-usb-password-protection-tools/" rel="noopener noreferrer" target="_blank">USB Secure</a></li>
+<li><a href="https://www.newsoftwares.net/ns_download/folderprotect1-en/folder-protect.exe" rel="noopener noreferrer" target="_blank">Folder Protect</a></li>
+</ul>
+</div>
+<div>
+<h4>Legal</h4>
+<ul style="list-style: none;">
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Terms of Use</a></li>
+<li><a href="#">Disclaimer</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<p>This site operates as an independent editorial resource. Some links may earn a referral commission at no cost to you. Product recommendations reflect editorial judgment and independent assessment.</p>
+<p style="margin-top: 8px;">Folder Lock is developed by <a href="https://newsoftwares.net/" rel="noopener noreferrer" target="_blank">NewSoftwares.net</a>. © 2026 ExcelUnlockGuide.</p>
+</div>
+</div>
+</footer>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "How to Remove Password Protection from an Excel File or Sheet",
+      "description": "A complete owner's guide on how to remove password protection from an Excel file, sheet, or workbook."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Guides" },
+        { "@type": "ListItem", "position": 2, "name": "Document Security" },
+        { "@type": "ListItem", "position": 3, "name": "Excel" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How Do I Remove Password Protection from an Excel File?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you know the password, go to File > Info > Protect Workbook > Encrypt with Password, delete the existing password, click OK, and save the file."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to remove password protection from an Excel sheet without the password?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can rename the .xlsx file to .zip, open the archive, find the specific worksheet XML file, and delete the sheetProtection tag. Save and rename it back to .xlsx."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between sheet protection and file password in Excel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sheet protection stops people from modifying cells but lets them read the data. A file password encrypts the whole document so it cannot even be viewed."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Remove Password Protection from Excel Files (If You Know the Password)",
+      "step": [
+        { "@type": "HowToStep", "text": "Open the Excel file and enter the current password." },
+        { "@type": "HowToStep", "text": "Click on the File tab and navigate to Info." },
+        { "@type": "HowToStep", "text": "Click Protect Workbook and select Encrypt with Password." },
+        { "@type": "HowToStep", "text": "Delete all the characters in the password field." },
+        { "@type": "HowToStep", "text": "Click OK and save the file." }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "name": "NewSoftwares.net",
+      "url": "https://www.newsoftwares.net"
+    }
+  ]
+}
+</script>
+<script defer="">
+document.addEventListener('DOMContentLoaded', () => {
+    const root = document.documentElement;
+
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if(menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // Smooth scroll for valid in-page anchors only
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetSelector = this.getAttribute('href');
+            if (!targetSelector || targetSelector === '#') return;
+            const target = document.querySelector(targetSelector);
+            if (!target) return;
+            e.preventDefault();
+            if (navLinks) navLinks.classList.remove('active');
+            target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Slider Tabs
+    const tabs = document.querySelectorAll('.slider-tab');
+    const contents = document.querySelectorAll('.slider-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            const target = document.getElementById(tab.getAttribute('data-tab'));
+            if (target) target.classList.add('active');
+        });
+    });
+
+    // Scenario Widget Logic
+    const scenarioBtns = document.querySelectorAll('.scenario-btn');
+    const scenarioResult = document.getElementById('scenario-result');
+    const results = {
+        'know-password': '<strong>Best Method:</strong> Use Method 1 below. You can remove the open password directly inside Excel by clearing the password field.',
+        'forgot-sheet': '<strong>Best Method:</strong> Use the ZIP/XML method below. Since you can open the file, the data is not encrypted; only editing permissions are restricted.',
+        'forgot-open': '<strong>Best Method:</strong> Check backups first. A forgotten file-open password is true encryption and usually cannot be removed safely without the original password.'
+    };
+    scenarioBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if(!scenarioResult) return;
+            const target = btn.getAttribute('data-target');
+            scenarioResult.innerHTML = results[target] || '';
+            scenarioResult.style.display = 'block';
+        });
+    });
+
+    // Liquid section entrances
+    const revealTargets = document.querySelectorAll('section, .section-badge, .asset-card, .feature-row');
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+        revealTargets.forEach(el => observer.observe(el));
+    } else {
+        revealTargets.forEach(el => el.classList.add('visible'));
+    }
+
+    // Morphing path utility: interpolates numeric values in same-command SVG paths
+    function numbersFromPath(path) {
+        return path.match(/-?\d+\.?\d*/g).map(Number);
+    }
+    function makePath(template, nums) {
+        let i = 0;
+        return template.replace(/-?\d+\.?\d*/g, () => {
+            const value = nums[i++];
+            return Number.isFinite(value) ? value.toFixed(2).replace(/\.00$/, '') : '0';
+        });
+    }
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function interpolate(a, b, t) { return a.map((num, i) => lerp(num, b[i], t)); }
+
+    const morphs = [
+        {
+            id: 'hero-blob-1',
+            duration: 9800,
+            paths: [
+                'M310 230 C390 125 530 146 585 250 C640 354 568 484 445 520 C322 556 188 492 168 365 C148 238 230 335 310 230 Z',
+                'M292 190 C420 118 548 188 600 304 C652 420 486 548 352 508 C218 468 112 360 188 244 C264 128 164 262 292 190 Z',
+                'M342 244 C458 136 594 204 566 344 C538 484 370 564 254 476 C138 388 174 234 268 184 C362 134 226 352 342 244 Z'
+            ]
+        },
+        {
+            id: 'hero-blob-2',
+            duration: 11400,
+            paths: [
+                'M928 154 C1052 82 1212 170 1224 315 C1236 460 1114 571 958 536 C802 501 764 358 814 262 C864 166 804 226 928 154 Z',
+                'M964 114 C1108 88 1246 232 1194 384 C1142 536 970 584 840 488 C710 392 782 210 888 182 C994 154 820 140 964 114 Z',
+                'M898 178 C1020 62 1200 126 1262 270 C1324 414 1120 572 948 514 C776 456 750 314 820 222 C890 130 776 294 898 178 Z'
+            ]
+        },
+        {
+            id: 'hero-blob-3',
+            duration: 12700,
+            paths: [
+                'M625 605 C730 510 892 540 954 666 C1016 792 850 872 705 836 C560 800 428 780 450 662 C472 544 520 700 625 605 Z',
+                'M585 628 C690 498 882 506 988 612 C1094 718 936 852 756 858 C576 864 410 770 468 650 C526 530 480 758 585 628 Z',
+                'M656 578 C796 502 930 598 938 734 C946 870 758 888 612 826 C466 764 414 638 520 562 C626 486 516 654 656 578 Z'
+            ]
+        },
+        {
+            id: 'shield-liquid-1',
+            duration: 8200,
+            paths: [
+                'M77 236 C116 98 267 78 362 158 C457 238 435 396 308 430 C181 464 38 374 77 236 Z',
+                'M92 194 C184 72 344 112 396 242 C448 372 326 468 202 432 C78 396 0 316 92 194 Z',
+                'M68 272 C96 118 278 54 384 184 C490 314 374 462 222 448 C70 434 40 426 68 272 Z'
+            ]
+        },
+        {
+            id: 'shield-liquid-2',
+            duration: 9600,
+            paths: [
+                'M122 376 C190 294 330 292 394 372 C458 452 306 536 182 484 C58 432 54 458 122 376 Z',
+                'M112 328 C236 258 390 326 410 432 C430 538 218 524 130 466 C42 408 -12 398 112 328 Z',
+                'M156 398 C228 284 352 320 426 402 C500 484 284 548 166 488 C48 428 84 512 156 398 Z'
+            ]
+        }
+    ];
+
+    const prepared = morphs.map(item => ({
+        ...item,
+        template: item.paths[0],
+        nums: item.paths.map(numbersFromPath),
+        el: document.getElementById(item.id)
+    })).filter(item => item.el);
+
+    function morphFrame(now) {
+        const speedMod = window.matchMedia('(max-width: 600px)').matches ? 4 : 1;
+        prepared.forEach(item => {
+            const duration = item.duration * speedMod;
+            const cycle = (now % duration) / duration * item.nums.length;
+            const idx = Math.floor(cycle) % item.nums.length;
+            const next = (idx + 1) % item.nums.length;
+            const localT = (cycle - Math.floor(cycle));
+            const eased = 0.5 - Math.cos(localT * Math.PI) / 2;
+            const nums = interpolate(item.nums[idx], item.nums[next], eased);
+            item.el.setAttribute('d', makePath(item.template, nums));
+        });
+        requestAnimationFrame(morphFrame);
+    }
+    requestAnimationFrame(morphFrame);
+
+    // Liquid cursor blob: lag + velocity stretch in hero
+    const hero = document.querySelector('.hero');
+    const cursor = document.querySelector('.liquid-cursor');
+    let mouse = { x: window.innerWidth / 2, y: 180 };
+    let pos = { x: mouse.x, y: mouse.y };
+    let prev = { x: pos.x, y: pos.y };
+    if (hero && cursor) {
+        hero.addEventListener('mousemove', (event) => {
+            const rect = hero.getBoundingClientRect();
+            mouse.x = event.clientX - rect.left;
+            mouse.y = event.clientY - rect.top;
+        });
+        function cursorFrame() {
+            pos.x += (mouse.x - pos.x) * 0.15;
+            pos.y += (mouse.y - pos.y) * 0.15;
+            const vx = pos.x - prev.x;
+            const vy = pos.y - prev.y;
+            const angle = Math.atan2(vy, vx) * 180 / Math.PI;
+            const stretch = Math.min(Math.hypot(vx, vy) / 18, 0.42);
+            cursor.style.left = `${pos.x}px`;
+            cursor.style.top = `${pos.y}px`;
+            cursor.style.transform = `translate3d(-50%, -50%, 0) rotate(${angle}deg) scale(${1 + stretch}, ${1 - stretch * .35})`;
+            prev.x = pos.x; prev.y = pos.y;
+            requestAnimationFrame(cursorFrame);
+        }
+        requestAnimationFrame(cursorFrame);
+    }
+
+    // Scroll color shift + morph progress indicator
+    const progress = document.querySelector('.morph-progress');
+    function hexToRgb(hex) {
+        const clean = hex.replace('#','');
+        return {
+            r: parseInt(clean.slice(0,2),16),
+            g: parseInt(clean.slice(2,4),16),
+            b: parseInt(clean.slice(4,6),16)
+        };
+    }
+    function rgbToHex({r,g,b}) {
+        return `#${[r,g,b].map(v => Math.round(v).toString(16).padStart(2,'0')).join('')}`;
+    }
+    function mixColor(a, b, t) {
+        const ca = hexToRgb(a), cb = hexToRgb(b);
+        return rgbToHex({ r: lerp(ca.r, cb.r, t), g: lerp(ca.g, cb.g, t), b: lerp(ca.b, cb.b, t) });
+    }
+    function updateScrollEffects() {
+        const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+        const pct = Math.min(Math.max(window.scrollY / max, 0), 1);
+        root.style.setProperty('--scroll-violet', pct.toFixed(3));
+        root.style.setProperty('--color-primary-accent', mixColor('#00D4FF', '#8B5CF6', pct * .75));
+        if (progress) {
+            const scale = 0.72 + pct * 0.78;
+            const radiusA = 52 - pct * 18;
+            const radiusB = 48 + pct * 14;
+            progress.style.transform = `scale(${scale})`;
+            progress.style.borderRadius = `${radiusA}% ${radiusB}% ${40 + pct*20}% ${60 - pct*12}% / ${48 + pct*10}% ${55 - pct*14}% ${45 + pct*16}% ${52 - pct*8}%`;
+        }
+    }
+    window.addEventListener('scroll', updateScrollEffects, { passive: true });
+    updateScrollEffects();
+});
+</script>
+</body>
+</html>
