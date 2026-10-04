@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://remove-password-protection-from-exc.vercel.app/sitemap.xml
